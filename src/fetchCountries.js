@@ -6,7 +6,9 @@ export default class SearchCountry {
   }
 
   findCountries() {
-    return fetch(`https://restcountries.com/v3.1/name/${this.name}`)
+    return fetch(
+      `https://restcountries.com/v3.1/name/${this.name}?fields=name,capital,population,flags,languages`
+    )
       .then(response => {
         if (!response.ok) {
           throw new Error(
@@ -15,7 +17,7 @@ export default class SearchCountry {
         }
         return response.json();
       })
-      .catch(console.error());
+      .catch(err => console.log(err));
   }
 
   get country() {

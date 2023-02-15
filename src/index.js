@@ -14,6 +14,9 @@ inputCountry.addEventListener('input', debounce(fetchCountry, DEBOUNCE_DELAY));
 function fetchCountry(e) {
   e.preventDefault();
   markupContainer.innerHTML = '';
+  if (e.target.value.trim() === '') {
+    return Notiflix.Notify.failure('Oops, there is no country with that name');
+  }
   searchCountry.country = e.target.value.trim();
   searchCountry
     .findCountries()
